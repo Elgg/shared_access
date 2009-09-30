@@ -38,6 +38,8 @@ $english = array(
 	'shared_access:decline' => 'Decline',
 	'shared_access:join' => 'Join',
 
+	'shared_access:show_in_tools_menu' => 'Show link in tools menu?',
+
 	/** Emails **/
 	'shared_access:request_join_subject' => '%s wants you to join %s!',
 	'shared_access:request_join_body' => 'Hi %s,

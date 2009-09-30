@@ -30,8 +30,9 @@ function shared_access_init() {
 	// page handler for ajax.
 	register_page_handler('shared_access_ajax', 'shared_access_ajax_handler');
 	
-	// add menu to tools dropdown
-	//add_menu(elgg_echo('shared_access:shared_access'), $CONFIG->site->url . 'pg/shared_access/home');
+	// add menu to tools dropdown if needed
+	if ('yes' == get_plugin_setting('show_in_tools_menu', 'shared_access'))
+		add_menu(elgg_echo('shared_access:shared_access'), $CONFIG->site->url . 'pg/shared_access/home');
 	
 	// register hooks for collection editing actions
 	// no need to register with add because you cannot create a shared access collection
