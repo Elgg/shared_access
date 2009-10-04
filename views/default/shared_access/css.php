@@ -200,3 +200,13 @@ a.new_collection_button:active {
 	margin-top:0;
 	padding:7px;
 }
+
+
+/* readable_access on wire posts */
+span.readable_access {
+	padding-left:18px;
+	background: url(<?php echo $vars['url']; ?>mod/shared_access/graphics/shared_access.gif) no-repeat 0 0;
+	font-weight: bold;
+}
+
+
