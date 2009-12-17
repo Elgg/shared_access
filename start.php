@@ -19,10 +19,10 @@ function shared_access_init() {
 	global $CONFIG;
 
 	// extend css
-	extend_view('css', 'shared_access/css');
+	elgg_extend_view('css', 'shared_access/css');
 	
 	// show up in the wire
-	extend_view('thewire/sidebar_options', 'shared_access/sidebar/thewire_ext');
+	elgg_extend_view('thewire/sidebar_options', 'shared_access/sidebar/thewire_ext');
 	
 	// page handler for invitations and managing shared access lists.
 	register_page_handler('shared_access', 'shared_access_page_handler');
