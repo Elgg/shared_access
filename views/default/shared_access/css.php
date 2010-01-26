@@ -71,7 +71,7 @@
 	padding:2px 5px;
 }
 .ac_loading {
-	background:transparent url("<?php echo $vars['url']; ?>mod/shared_access/graphics/indicator.gif") no-repeat scroll right center;
+	background:transparent url(<?php echo $vars['url']; ?>mod/shared_access/graphics/indicator.gif) no-repeat scroll right center;
 }
 .ac_odd {
 	background-color:white;
