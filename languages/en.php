@@ -24,6 +24,7 @@ $english = array(
 	'shared_access:post_to' => 'Post to',
 	'shared_access:no_shared_access_collections' => 'No shared access collections',
 	'shared_access:collections' => 'Collections',
+	'shared_access:info' => 'Shared access is a lightweight way to collaborate around an access level.',
 
 	/** Admin **/
 	'shared_access:new_collection' => 'Add a new collection',
