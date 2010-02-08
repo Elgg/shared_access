@@ -6,7 +6,7 @@
 	 * @package ElggTheWire
 	 * @license Private
 	 * @author Curverider <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2009
+	 * @copyright Curverider Ltd 2008-2010
 	 * @link http://elgg.com/
 	 */
 	
