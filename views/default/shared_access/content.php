@@ -71,5 +71,5 @@ ___END;
 	
 }
 
-echo elgg_view_layout('sidebar_boxes', $boxes, $body);
+echo elgg_view_layout('one_column_with_sidebar', $body, $boxes);
 echo elgg_view('shared_access/js');

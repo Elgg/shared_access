@@ -39,5 +39,5 @@ $content .= '<div class="clearfloat"></div></div>';
 if (get_input('ajax') == true) {
 	echo $content;
 } else {
-	echo elgg_view_layout('sidebar_boxes', $boxes, $body . $content);
+	echo elgg_view_layout('one_column_with_sidebar', $body . $content, $boxes);
 }

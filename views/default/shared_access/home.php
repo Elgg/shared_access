@@ -36,4 +36,4 @@ if ($sacs_html == '') {
 $body = "<div id='collections_page_head'>" . $new_collection_link . $body ."</div>" . $sacs_html;
 
 $boxes = elgg_view('shared_access/sidebar/info');
-echo elgg_view_layout('sidebar_boxes', $boxes, $body);
+echo elgg_view_layout('one_column_with_sidebar', $body, $boxes);

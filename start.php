@@ -79,7 +79,7 @@ function shared_access_page_handler($page) {
 		case 'new':
 			$area1 = elgg_view_title(elgg_echo('shared_access:new_collection'));
 			$area2 = elgg_view('shared_access/edit');
-			$content = elgg_view_layout("sidebar_boxes", '', $area1 . $area2);
+			$content = elgg_view_layout("one_column_with_sidebar", $area1 . $area2);
 			break;
 			
 		case 'thewire':
