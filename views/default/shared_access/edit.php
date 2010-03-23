@@ -7,13 +7,12 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 if ($sac = $vars['sac']) {
 	$sac_name = $sac->title;
 	$sac_desc = $sac->description;
-	$sac_members = get_entities_from_relationship('shared_access_member', $sac->getGUID(), true, null, null, null, null, 9999);
+	$sac_members = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->getGUID(), 'inverse_relationship' => TRUE, 'limit' => 9999));
 
 	foreach ($sac_members as $member) {
 		$sac_member_guids[] = $member->getGUID();
@@ -28,18 +27,13 @@ if ($sac = $vars['sac']) {
 $member_html = '';
 
 foreach ($sac_members as $member) {
-	$member_html .= "<div class=\"member_icon shared_access_member_icon\"><a href=\"{$member->getURL()}\">" 
+	$member_html .= "<div class='member_icon'><a href=\"{$member->getURL()}\">" 
 		. elgg_view('profile/icon', array('entity' => $member, 'size' => 'small', 'override' => 'true'))
 		. '</a></div>';
 }
 $form_body .= "
-<div class='contentWrapper'><p>
-	<label>" . elgg_echo("shared_access:shared_access_name")
-		. elgg_view('input/text', array('internalname' => 'name', 'value'=>$sac_name))
-		.
-	"
-	</label>
-</p>
+<div class='collection_details margin_top clearfloat'>
+	<p><label>" . elgg_echo("shared_access:shared_access_name").elgg_view('input/text', array('internalname' => 'name', 'value'=>$sac_name))."</label></p>
 
 <p>
 	<label>" . elgg_echo("shared_access:shared_access_description")
@@ -51,14 +45,12 @@ $form_body .= "
 
 <p>
 	<label>" . elgg_echo('shared_access:members') . "</label>
-	$member_html
+	<div class='clearfloat'>$member_html</div>
 </p>
-<div class=\"clearfloat\"></div>
+
 
 <p>
 	<label>" . elgg_echo("shared_access:invite_users") . "<br /></label>". 
-		//elgg_view('friends/picker', array('entities' => $entities, 'internalname' => 'members', 'highlight' => 'all', 'value' => $sac_member_guids))
-		//elgg_view('input/autocomplete', array('internalname'=>'members_search', 'match_on'=>'users'))
 		elgg_view('input/userpicker', array('internalname'=>'members'))
 	. "
 </p>

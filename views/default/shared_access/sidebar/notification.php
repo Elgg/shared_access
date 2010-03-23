@@ -7,13 +7,7 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 ?>
-
-<div class="sidebarBox">
-	<h3><?php echo elgg_echo('shared_access:notifications'); ?></h3>
-	<div class="contentWrapper">
-		These don't work yet.
-	</div>
-</div>
+<h3><?php echo elgg_echo('shared_access:notifications'); ?></h3>
+<p>These don't work yet.</p>

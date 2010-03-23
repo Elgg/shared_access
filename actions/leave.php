@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 if (!$collection_id = get_input('collection_id', false) OR !$collection = get_access_collection($collection_id)) {

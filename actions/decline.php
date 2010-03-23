@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 gatekeeper();

@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 // have to pull from get_input() because the this view is called
 // from the wire which doesn't know about sacs.
@@ -21,10 +20,11 @@ if ($sac) {
 $user = get_loggedin_user();
 $limit = 5;
 
-$collections = get_entities_from_relationship('shared_access_member', $user->getGUID(), false, null, null, null, null, $limit);
-$collections_count = get_entities_from_relationship('shared_access_member', $user->getGUID(), false, null, null, null, null, null, null, true);
+$collections = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID(), 'inverse_relationship' => FALSE, 'limit' => $limit));
 
-$content = '<div id="owner_block_submenu"><ul class="thewire_shared_access">';
+$collections_count = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID(), 'inverse_relationship' => FALSE, 'count' => TRUE));
+
+$content = '<ul class="submenu access_collections">';
 
 foreach ($collections as $collection) {
 	if ($collection->getGUID() == $sac_guid) {
@@ -46,10 +46,8 @@ if ($collections_count > $limit) {
 	</li>
 ___END;
 }
-$content .= '</ul></div>';
+$content .= '</ul>';
 ?>
 
-<div class="sidebarBox">
-	<h3><?php echo elgg_echo('shared_access:collections'); ?></h3>
-		<?php echo $content; ?>
-</div>
+<h3 class="collections_filter_title"><?php echo elgg_echo('shared_access:collections'); ?></h3>
+<?php echo $content; ?>

@@ -7,33 +7,33 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 $user = $vars['user'];
 
-$body = elgg_view_title(elgg_echo('shared_access:shared_access'));
+$body = "<div class='content_header_title'>".elgg_view_title(elgg_echo('shared_access:shared_access'))."</div>";
 
-$new_collection_link = "<a href=\"{$vars['url']}pg/shared_access/new\" class='new_collection_button'>" . elgg_echo('shared_access:new_collection') . "</a>";
+$new_collection_link = "<div class='content_header_options'><a href=\"{$vars['url']}pg/shared_access/new\" class='action_button'>" . elgg_echo('shared_access:new_collection') . "</a></div>";
 
 // grab invitations
-$sacs = get_entities_from_relationship('shared_access_invitation', $user->getGUID());
+$sacs = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_invitation', 'relationship_guid' => $user->getGUID() ));
+
 $sacs_html = '';
 foreach ($sacs as $sac) {
 	$sacs_html .= elgg_view('shared_access/collection', array('sac'=>$sac, 'user'=>$user, 'invitation'=>true));
 }
 
 // grab all sacs
-$sacs = get_entities_from_relationship('shared_access_member', $user->getGUID());
+$sacs = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID() ));
 foreach ($sacs as $sac) {
 	$sacs_html .= elgg_view('shared_access/collection', array('sac'=>$sac, 'user'=>$user));
 }
 
 if ($sacs_html == '') {
-	$sacs_html = elgg_echo('shared_access:no_shared_access_collections');
+	$sacs_html = "<p class='margin_top'>".elgg_echo('shared_access:no_shared_access_collections')."</p>";
 }
 
-$body = "<div id='collections_page_head'>" . $new_collection_link . $body ."</div>" . $sacs_html;
+$body = "<div id='content_header' class='clearfloat'>" . $body . $new_collection_link . "</div>" . $sacs_html;
 
 $boxes = elgg_view('shared_access/sidebar/info');
 echo elgg_view_layout('one_column_with_sidebar', $body, $boxes);

@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 $home = "<a href=\"{$vars['url']}pg/shared_access/home\">" . elgg_echo('shared_access:back_home') . '</a>';

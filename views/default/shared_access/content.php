@@ -7,11 +7,11 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 $sac = $vars['sac'];
-$sacs = get_entities_from_relationship('shared_access_member', $vars['user']->getGUID(), false, 'object', 'shared_access', null, null, 9999);
+$sacs = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $vars['user']->getGUID(), 'inverse_relationship' => FALSE, 'types' => 'object', 'subtypes' => 'shared_access', 'limit' => 9999));
+
 $limit = get_input('limit', 20);
 
 if ($sacs) {
@@ -29,7 +29,7 @@ if ($sacs) {
 ___END;
 	
 	$upper_controls = "
-	<div class=\"contentWrapper\">
+	<div class='contentWrapper 1'>
 		$select
 		
 		<a style=\"float: right;\" href=\"{$vars['url']}pg/shared_access/new\">" . elgg_echo('shared_access:new_collection') . '</a>
@@ -38,12 +38,9 @@ ___END;
 	
 	$boxes = elgg_view('shared_access/sidebar/home', $vars);
 	$boxes .= elgg_view('shared_access/sidebar/members', $vars);
-	//$boxes .= elgg_view('shared_access/sidebar/notification', $vars);
 	$boxes .= elgg_view('shared_access/sidebar/thewire', $vars);
 	
 	$body = elgg_view_title(elgg_echo('shared_access:shared_access') . ": " . $sac->title);
-	//$body .= $upper_controls;
-	//$content = get_entities_from_access_id($sac->acl_id);
 	
 	// get entities and show the river view
 	// @todo currently have to grab all the entities, then pass them
@@ -55,15 +52,15 @@ ___END;
 	}
 	if (count($entity_guids) > 0) {
 		$content = elgg_view_river_items('', $entity_guids, '', '', '', '', $limit);
-		$body .= '<div class="contentWrapper">' . $content . '</div>';
+		$body .= '<div class="contentWrapper 1a">' . $content . '</div>';
 	} else {
-		$body .= '<div class="contentWrapper">' . elgg_echo('shared_access:no_shared_content') . '</div>';
+		$body .= '<div class="contentWrapper 1b">' . elgg_echo('shared_access:no_shared_content') . '</div>';
 	}
 } else {
 
 	$body =  elgg_view_title(elgg_echo('shared_access:shared_access') . ": " . $sac->title) .
 	'
-	<div class="contentWrapper">
+	<div class="contentWrapper 1c">
 		' . elgg_echo('shared_access:no_collections') . "
 		<a style=\"float: right;\" href=\"{$vars['url']}pg/shared_access/new\">" . elgg_echo('shared_access:new_collection') . '</a>
 	</div>

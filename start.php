@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 /**
@@ -21,18 +20,15 @@ function shared_access_init() {
 	// extend css
 	elgg_extend_view('css', 'shared_access/css');
 	
-	// show up in the wire
-	elgg_extend_view('thewire/sidebar_options', 'shared_access/sidebar/thewire_ext');
+	// show up in Conversations and Activity sidebars
+	elgg_extend_view('conversations/sidebar', 'shared_access/sidebar/thewire_ext');
+	elgg_extend_view('riverdashboard/sidebar', 'shared_access/sidebar/thewire_ext');
 	
 	// page handler for invitations and managing shared access lists.
 	register_page_handler('shared_access', 'shared_access_page_handler');
 	
 	// page handler for ajax.
 	register_page_handler('shared_access_ajax', 'shared_access_ajax_handler');
-	
-	// add menu to tools dropdown if needed
-	if ('yes' == get_plugin_setting('show_in_tools_menu', 'shared_access'))
-		add_menu(elgg_echo('shared_access:shared_access'), $CONFIG->site->url . 'pg/shared_access/home');
 	
 	// register hooks for collection editing actions
 	// no need to register with add because you cannot create a shared access collection
@@ -86,7 +82,7 @@ function shared_access_page_handler($page) {
 			if (!$sac = get_entity($page[1]) OR $sac->getSubtype() != 'shared_access') {
 				forward($CONFIG->site->url . 'pg/shared_access/home');
 			} else {
-				$body = elgg_view('thewire/shared_access', array('sac' => $sac));
+				$body = elgg_view('conversations/shared_access', array('sac' => $sac));
 			}
 			
 			page_draw(elgg_echo('thewire:thewire'),$body);
@@ -175,12 +171,14 @@ function shared_access_deletecollection_hook($hook, $entity_type, $returnvalue, 
 	if ($sacs = get_entities_from_metadata('acl_id', $params['collection_id'], 'object', 'shared_access')) {
 		foreach ($sacs as $sac) {
 			// remove user and entity relationships
-			$users = get_entities_from_relationship('shared_access_member', $sac->guid, true, 'object', 'user', null, null, 9999);
+			$users = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->guid, 'inverse_relationship' => TRUE, 'types' => 'object', 'subtypes' => 'user', 'limit' => 9999));
+			
 			foreach ($users as $user) {
 				remove_entity_relationship($user->getGUID(), 'shared_access_member', $sac->getGUID());
 			}
 			
-			$users = get_entities_from_relationship('shared_access_invitation', $sac->guid, true, 'object', 'user', null, null, 9999);
+			$users = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_invitation', 'relationship_guid' => $sac->guid, 'inverse_relationship' => TRUE, 'types' => 'object', 'subtypes' => 'user', 'limit' => 9999));
+
 			foreach ($users as $user) {
 				remove_entity_relationship($user->getGUID(), 'shared_access_invitation', $sac->getGUID());
 			}
@@ -239,7 +237,7 @@ function shared_access_write_acl_plugin_hook($hook, $entity_type, $returnvalue, 
 	$shared_str = $user->shared_access_memberships;
 	
 	if ($user = get_loggedin_user() 
-		AND $sacs = get_entities_from_relationship('shared_access_member', $user->getGUID(), false, 'object', 'shared_access', null, null, 9999)
+		AND $sacs = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID(), 'inverse_relationship' => FALSE, 'types' => 'object', 'subtypes' => 'shared_access', 'limit' => 9999))
 	) {
 		foreach ($sacs as $sac) {
 			//$returnvalue[$sac->acl_id] = elgg_echo('shared_access:shared') . ': ' . $sac->title . ' (by ' . get_entity($sac->owner_guid)->name . ')';

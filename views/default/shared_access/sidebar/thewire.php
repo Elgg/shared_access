@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 $sac = $vars['sac'];
 $access_id = $sac->acl_id;
@@ -47,17 +46,11 @@ $submit
 <input type="hidden" name="method" value="site" />
 <input type="hidden" name="access" value="$access_id" />
 <input type="hidden" name="location" value="referer" />
-<div class='clearfloat'></div>
-
 ___END;
 
-$form = elgg_view('input/form', array('body'=>$form_body, 'action'=>$vars['url'] . 'action/thewire/add'));
+$form = elgg_view('input/form', array('body'=>$form_body, 'action'=>$vars['url'] . 'action/conversations/add'));
 
 ?>
 
-<div class="sidebarBox">
-	<h3><?php echo $title; ?></h3>
-	<div class="contentWrapper">
-		<?php echo $form; ?>
-	</div>
-</div>
+<h3><?php echo $title; ?></h3>
+<?php echo $form; ?>

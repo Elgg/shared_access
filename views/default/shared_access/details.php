@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 $user = get_loggedin_user();
@@ -24,17 +23,15 @@ if (check_entity_relationship($user->getGUID(), 'shared_access_member', $sac->ge
 }
 
 // output members
-$members = get_entities_from_relationship('shared_access_member', $sac->getGUID(), true);
-$content = '<div class="contentWrapper">
-<p><label>' . elgg_echo('shared_access:collection_members') . '</label></p>
-';
+$members = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->getGUID(), 'inverse_relationship' => TRUE));
+
+$content = '<p><label>' . elgg_echo('shared_access:collection_members') . '</label></p>';
 
 foreach ($members as $member) {
-	$content .= "<div class=\"member_icon shared_access_member_icon\"><a href=\"{$member->getURL()}\">" 
+	$content .= "<div class='member_icon'><a href=\"{$member->getURL()}\">" 
 		. elgg_view('profile/icon', array('entity' => $member, 'size' => 'small', 'override' => 'true'))
 		. '</a></div>';
 }
-$content .= '<div class="clearfloat"></div></div>';
 
 if (get_input('ajax') == true) {
 	echo $content;

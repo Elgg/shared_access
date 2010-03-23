@@ -7,7 +7,6 @@
  * @author Curverider Ltd
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
- * @author Brett Profitt
  */
 
 $english = array(
@@ -22,7 +21,7 @@ $english = array(
 	'shared_access:notifications' => 'Notification',
 	'shared_access:post_to_wire' => 'Post to Collection Wire',
 	'shared_access:post_to' => 'Post to',
-	'shared_access:no_shared_access_collections' => 'No shared access collections',
+	'shared_access:no_shared_access_collections' => 'No shared access collections.',
 	'shared_access:collections' => 'Collections',
 	'shared_access:info' => 'Shared access is a lightweight way to collaborate around an access level.',
 
@@ -38,8 +37,8 @@ $english = array(
 	'shared_access:collection_saved' => 'Collection saved.',
 	'shared_access:decline' => 'Decline',
 	'shared_access:join' => 'Join',
-
-	'shared_access:show_in_tools_menu' => 'Show link in tools menu?',
+	'shared_access:details' => 'Details',
+	'shared_access:leave' => 'Leave',
 
 	/** Emails **/
 	'shared_access:request_join_subject' => '%s wants you to join %s!',
