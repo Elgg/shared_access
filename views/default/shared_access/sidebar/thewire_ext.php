@@ -50,4 +50,9 @@ $content .= '</ul>';
 ?>
 
 <h3 class="collections_filter_title"><?php echo elgg_echo('shared_access:collections'); ?></h3>
-<?php echo $content; ?>
+<?php 
+	if($collections)
+		echo $content; 
+	else
+		echo "<a href=\"{$vars['url']}pg/shared_access/home\">". elgg_echo('shared_access:createone') . "</a> ". elgg_echo('shared_access:createtwo') . ".";
+?>
