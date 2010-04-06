@@ -29,7 +29,7 @@
 	background-color:#EEEEEE;
 	margin:10px 0 0;
 	padding:5px;
-	width:720px;
+	width:auto;
 }
 .shared_access_collection h2.shared_access_name {
 	line-height:1em;
