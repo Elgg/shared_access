@@ -8,17 +8,18 @@
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
  */
+ 
+set_context('thewire');
 
 $area3 = elgg_view("shared_access/sidebar/sidebar_links");
 
-$area1 = elgg_view_title(elgg_echo('shared_access:shared_access') . ": " . $vars['sac']->title);
+//$area1 = elgg_view_title(elgg_echo('shared_access:shared_access') . ": " . $vars['sac']->title);
+$area1 = elgg_view('shared_access/shared_access_topbar', array('sac' => $vars['sac']));
+
 if(isloggedin())
 	$area2 = elgg_view("conversations/forms/add", array('access_id' => $vars['sac']->acl_id, 'location' => 'referer'));
 
-$get_wireposts = get_entities_from_annotations("object", "conversations", "wire_reply", "", 0, 0, 20, 0, "desc", false);
-
-$get_wireposts = get_entities_from_access_id($vars['sac']->acl_id, 'object', 'thewire', null, 10);
-
+$get_wireposts = get_entities_from_access_id($vars['sac']->acl_id, 'object', 'conversations', null, 10);
 
 $area2 .= elgg_view("conversations/display", array("entities" => $get_wireposts));
 
