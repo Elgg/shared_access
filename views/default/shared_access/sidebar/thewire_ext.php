@@ -8,6 +8,8 @@
  * @copyright Curverider Ltd 2008-2010
  * @link http://elgg.com/
  */
+ 
+if(isloggedin()){
 // have to pull from get_input() because the this view is called
 // from the wire which doesn't know about sacs.
 $sac = $vars['sac'];
@@ -55,4 +57,5 @@ $content .= '</ul>';
 		echo $content; 
 	else
 		echo "<a href=\"{$vars['url']}pg/shared_access/home\">". elgg_echo('shared_access:createone') . "</a> ". elgg_echo('shared_access:createtwo') . ".";
+}//end of opening if statement
 ?>
