@@ -88,6 +88,52 @@
 	clear:both;
 }
 
+/* SharedAccess topbar (used on Activity and Conversations when filtered by Channel) */
+#shared_access_topbar {
+	background-color: #ececec;
+	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px;
+	margin:0 0 10px 0;
+	padding:5px;	
+}
+#shared_access_topbar h2 {
+	margin:0 0 0 0;
+	padding:0 0 0 22px;
+	border:none;
+	line-height:1.2em;
+	background: url(<?php echo $vars['url']; ?>mod/shared_access/graphics/icons_shared_access.png) no-repeat 0 -76px;
+}
+#shared_access_topbar .entity_edit {
+	margin-right:20px;
+	margin-top:4px;
+	display:block;
+}
+#shared_access_topbar .shared_access_members {
+	margin-left:4px;
+}
+#shared_access_topbar .shared_access_owner {
+	padding-right:4px;
+	border-right:1px solid #cccccc;
+}
+#shared_access_topbar .shared_access_others {
+	background: #999999;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px;
+	margin-left:4px;
+	height:25px;
+	min-width:23px;
+	padding:0 2px;	
+}
+#shared_access_topbar .shared_access_others span {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	line-height: 1.7em;
+}
+#shared_access_topbar .shared_access_others span a {
+	text-decoration: none;
+	color:white;	
+}
 
 /* autocomplete / live search */
 .ac_results {
@@ -160,49 +206,3 @@ ul.users li:first-child {
 	font-weight:bold;
 }
 /* end auto-complete / live search */
-
-#SAC_Header {
-	background-color: #ececec;
-	-webkit-border-radius: 8px; 
-	-moz-border-radius: 8px;
-	margin:0 0 10px 0;
-	padding:5px;	
-}
-#SAC_Header #content_area_user_title h2 {
-	margin:0 0 0 0;
-	padding:0 0 0 22px;
-	background: url(<?php echo $vars['url']; ?>mod/shared_access/graphics/icons_shared_access.png) no-repeat 0 -76px;
-}
-#SAC_Header #SAC_Details {
-	float:right;
-}
-#SAC_Details .SAC_Members {
-	margin-left:4px;
-}
-#SAC_Details #SAC_Owner {
-	padding-right:4px;
-	border-right:1px solid #cccccc;
-}
-#SAC_Details .SAC_Others {
-	background: #999999;
-	-webkit-border-radius: 5px; 
-	-moz-border-radius: 5px;
-	margin-left:4px;
-	height:25px;
-	min-width:23px;
-	padding:0 2px;	
-}
-#SAC_Details .SAC_Others span {
-	font-weight: bold;
-	text-align: center;
-	display: block;
-	line-height: 1.7em;
-}
-#SAC_Details .SAC_Others span a {
-	text-decoration: none;
-	color:white;	
-}
-#SAC_Details #SAC_Edit {
-	margin-right:20px;
-	padding-top:3px;
-}

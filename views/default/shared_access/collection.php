@@ -42,10 +42,10 @@ if ($owner->getGUID() == $user->getGUID() || isadminloggedin()) {
 		addslashes(elgg_echo('question:areyousure')) .
 		"');\" href=\"" . elgg_add_action_tokens_to_url("{$vars['url']}action/shared_access/delete?collection={$sac->acl_id}") . "\">" . elgg_echo('delete') . "</a></div>";
 
-	$edit_html .= "<div class='edit_collection'><a class='shared_access_edit_link ajax_content' href=\"{$vars['url']}pg/shared_access/{$sac->getGUID()}/edit\">"
-		.elgg_echo('edit') . '</a></div>';
+	$edit_html .= "<span class='entity_edit'><a class='shared_access_edit_link ajax_content' href=\"{$vars['url']}pg/shared_access/{$sac->getGUID()}/edit\">"
+		.elgg_echo('edit') . '</a></span>';
 
-	$edit_html .= "<div class='edit_collection'><a class='shared_access_details_link ajax_content' href=\"{$vars['url']}pg/shared_access/{$sac->getGUID()}/edit\">".$members_str . '</a></div>';
+	$edit_html .= "<span class='entity_edit'><a class='shared_access_details_link ajax_content' href=\"{$vars['url']}pg/shared_access/{$sac->getGUID()}/edit\">".$members_str . '</a></span>';
 
 	// add loaded content for admins
 	if ($vars['opened']) {
