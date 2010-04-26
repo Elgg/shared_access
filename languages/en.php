@@ -26,6 +26,7 @@ $english = array(
 	'shared_access:info' => 'Channels are a lightweight way to filter content based on an access level.',
 	'shared_access:createone' => 'Create a channel',
 	'shared_access:createtwo' => 'to help filter content',
+	'shared_access:leave' => 'Leave channel',
 
 	/** Admin **/
 	'shared_access:new_collection' => 'Add a new channel',
