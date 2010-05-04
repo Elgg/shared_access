@@ -19,6 +19,9 @@ function shared_access_init() {
 
 	// extend css
 	elgg_extend_view('css', 'shared_access/css');
+	
+	// extend topbar
+	elgg_extend_view('elgg_topbar/extend', 'shared_access/topbar_extend');
 
 	// show up in Conversations and Activity sidebars
 	elgg_extend_view('conversations/sidebar', 'shared_access/sidebar/thewire_ext');
