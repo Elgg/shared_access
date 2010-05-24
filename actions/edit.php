@@ -47,7 +47,7 @@ if (!$guid) {
 }
 
 // sort out the members
-$sent_members = get_input('members');
+$sent_members = (array) get_input('members', array());
 $cur_members = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->getGUID(), 'inverse_relationship' => TRUE, 'limit' => 9999));
 
 // remove ones that aren't in the new array.
