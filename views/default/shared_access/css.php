@@ -176,16 +176,6 @@
 .autocomplete {
 	width:300px;
 }
-.collection_details .user_picker .user_picker_entry {
-	clear:both;
-	height:25px;
-	padding:5px;
-	margin-top:5px;
-	border-bottom:1px solid #cccccc;
-}
-.collection_details .user_picker_entry .delete_button {
-	margin-right:10px;
-}
 .livesearch_icon {
 	float:left;
 	padding-right:10px;
