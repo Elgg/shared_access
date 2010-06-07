@@ -31,7 +31,7 @@ if (!$guid) {
 	// create a new "container" object.
 	$sac = new ElggObject();
 	$sac->title = $name;
-	$sac->description = $desc;
+	$sac->description = get_input('description');
 	$sac->subtype = 'shared_access';
 	// this has to be access_public.
 	$sac->access_id = ACCESS_PUBLIC;
@@ -42,7 +42,7 @@ if (!$guid) {
 	add_entity_relationship(get_loggedin_user()->getGUID(), 'shared_access_member', $sac->getGUID());
 } else {
 	$sac->title = $name;
-	$sac->description = $desc;
+	$sac->description = get_input('description');
 	$sac->save();
 }
 
