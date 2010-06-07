@@ -296,22 +296,19 @@ function shared_access_write_acl_plugin_hook($hook, $entity_type, $returnvalue, 
  *
  * @return bool on success
  */
-function shared_access_remove_user_hook($user_guid, $collection_id) {
-	if (!$user = get_user($user_guid) OR !$collection = get_access_collection($collection_id)) {
-		return false;
-	}
-
-	$type = ($invitation) ? 'shared_access_invitations' : 'shared_access_memberships';
+function shared_access_remove_user_hook($event, $object_type, $object) {
+	$user = get_entity($object->guid_one);
+	$type = ($object_type == 'shared_access_member') ? 'shared_access_memberships' : 'shared_access_invitations';
 
 	if ($shared_str = $user->$type AND !empty($shared_str)) {
 		$shared = explode(',', $shared_str);
 
 		// remove the entry for the collection id
-		array_splice($shared, array_search($collection_id, $shared), 1);
+		array_splice($shared, array_search($object->guid_two, $shared), 1);
 		return $user->$type = implode(',', $shared);
 	} else {
 		// didn't exist, so don't need to remove.
-		return true;
+		return TRUE;
 	}
 }
 

@@ -9,11 +9,14 @@
  * @link http://elgg.com/
  */
 
-if (!$collection_id = get_input('collection_id', false) OR !$collection = get_access_collection($collection_id)) {
+gatekeeper();
+$user = get_loggedin_user();
+
+if (!$guid = get_input('guid', false) OR !($sac = get_entity($guid) AND $sac->getSubtype() == 'shared_access')) {
 	register_error(elgg_echo('shared_access:errorleaving'));
 } else {
-	if (shared_access_remove_user_from_shared_collection(get_loggedin_user()->getGUID(), $collection->id, 'shared_access_membership')) {
-		system_message(sprintf(elgg_echo('shared_access:left'), $collection->name));
+	if (remove_entity_relationship($user->getGUID(), 'shared_access_member', $guid)) {
+		system_message(sprintf(elgg_echo('shared_access:left'), $sac->title));
 	} else {
 		register_error(elgg_echo('shared_access:errorleaving'));
 	}
