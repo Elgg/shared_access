@@ -24,7 +24,10 @@ foreach ($sacs as $sac) {
 }
 
 // grab all sacs
-$sacs = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID() ));
+$sacs = elgg_get_entities_from_relationship(array(
+	'relationship' => 'shared_access_member',
+	'relationship_guid' => $user->getGUID()
+));
 foreach ($sacs as $sac) {
 	$sacs_html .= elgg_view('shared_access/collection', array('sac'=>$sac, 'user'=>$user));
 }

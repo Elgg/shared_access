@@ -182,8 +182,15 @@ function shared_access_add_user_hook($event, $object_type, $object) {
  */
 function shared_access_deletecollection_hook($hook, $entity_type, $returnvalue, $params) {
 	global $CONFIG;
+	
+	$sacs = elgg_get_entities_from_metadata(array(
+		'metadata_names' => 'acl_id',
+		'metadata_values' => $params['collection_id'],
+		'types' => 'object',
+		'subtypes' => 'shared_access',
+	));
 
-	if ($sacs = get_entities_from_metadata('acl_id', $params['collection_id'], 'object', 'shared_access')) {
+	if (is_array($sacs) && !empty($sacs)) {
 		foreach ($sacs as $sac) {
 			// remove user and entity relationships
 			$users = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->guid, 'inverse_relationship' => TRUE, 'types' => 'object', 'subtypes' => 'user', 'limit' => 9999));

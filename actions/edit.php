@@ -48,12 +48,17 @@ if (!$guid) {
 
 // sort out the members
 $sent_members = (array) get_input('members', array());
-$cur_members = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $sac->getGUID(), 'inverse_relationship' => TRUE, 'limit' => 9999));
+$cur_members = elgg_get_entities_from_relationship(array(
+	'relationship' => 'shared_access_member',
+	'relationship_guid' => $sac->getGUID(),
+	'inverse_relationship' => TRUE,
+	'limit' => 9999
+));
 
 // remove ones that aren't in the new array.
 foreach ($cur_members as $member) {
 	$guid = $member->getGUID();
-	if (!in_array($guid, $sent_members)) {
+	if (!in_array($guid, $sent_members) && $guid != get_loggedin_user()->getGUID()) {
 		remove_entity_relationship($guid, 'shared_access_member', $sac->getGUID());
 	}
 	$key = array_search($guid, $sent_members);
