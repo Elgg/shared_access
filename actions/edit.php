@@ -39,7 +39,7 @@ if (!$guid) {
 	$sac->save();
 	
 	// add the creator as a member
-	add_entity_relationship(get_loggedin_user()->getGUID(), 'shared_access_member', $sac->getGUID());
+	add_entity_relationship($user->getGUID(), 'shared_access_member', $sac->getGUID());
 } else {
 	$sac->title = $name;
 	$sac->description = get_input('description');
@@ -58,7 +58,7 @@ $cur_members = elgg_get_entities_from_relationship(array(
 // remove ones that aren't in the new array.
 foreach ($cur_members as $member) {
 	$guid = $member->getGUID();
-	if (!in_array($guid, $sent_members) && $guid != get_loggedin_user()->getGUID()) {
+	if (!in_array($guid, $sent_members) && $guid != $user->getGUID()) {
 		remove_entity_relationship($guid, 'shared_access_member', $sac->getGUID());
 	}
 	$key = array_search($guid, $sent_members);
