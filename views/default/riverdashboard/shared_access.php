@@ -14,8 +14,10 @@ set_context('activity');
 $area1 = elgg_view('shared_access/shared_access_topbar', array('sac' => $vars['sac']));
 
 $limit = get_input('limit', 20);
-//$entities = get_entities_from_access_id($sac->acl_id);
-$entities = elgg_get_entities_from_access_id(array('access_id' => $vars['sac']->acl_id, 'group_by' => 'e.guid'));
+$entities = elgg_get_entities_from_access_id(array(
+	'access_id' => $vars['sac']->acl_id,
+	'group_by' => 'e.guid'
+));
 $entity_guids = array();
 foreach ($entities as $entity) {
 	$entity_guids[] = $entity->getGUID();

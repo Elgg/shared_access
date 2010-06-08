@@ -19,9 +19,16 @@ $area1 = elgg_view('shared_access/shared_access_topbar', array('sac' => $vars['s
 if(isloggedin())
 	$area2 = elgg_view("conversations/forms/add", array('access_id' => $vars['sac']->acl_id, 'location' => 'referer'));
 
-$get_wireposts = get_entities_from_access_id($vars['sac']->acl_id, 'object', 'conversations', null, 10);
+$get_wireposts = elgg_get_entities_from_access_id(array(
+	'access_id' => $vars['sac']->acl_id,
+	'type' => 'object',
+	'subtype' => 'conversations',
+));
 
-$area2 .= elgg_view("conversations/display", array("entities" => $get_wireposts));
+$area2 .= elgg_view('conversations/display', array(
+	'entities' => $get_wireposts,
+	'access_id' => $vars['sac']->acl_id,
+));
 
 //include a view for plugins to extend
 $area3 .= elgg_view("conversations/sidebar", array_merge($vars, array("object_type" => 'conversations')));
