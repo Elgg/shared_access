@@ -9,6 +9,7 @@
  * @link http://elgg.com/
  */
 
+$sac_member_guids = array();
 if ($sac = $vars['sac']) {
 	$sac_name = $sac->title;
 	$sac_desc = $sac->description;
@@ -24,13 +25,11 @@ if ($sac = $vars['sac']) {
 	$sac_members = array();
 }
 
-$member_html = '';
+$userpicker = elgg_view('input/userpicker', array(
+	'internalname'=>'members',
+	'value' => $sac_member_guids,
+));
 
-foreach ($sac_members as $member) {
-	$member_html .= "<div class='member_icon'><a href=\"{$member->getURL()}\">" 
-		. elgg_view('profile/icon', array('entity' => $member, 'size' => 'small', 'override' => 'true'))
-		. '</a></div>';
-}
 $form_body .= "
 <div class='collection_details margin_top clearfloat'>
 	<p><label>" . elgg_echo("shared_access:shared_access_name").elgg_view('input/text', array('internalname' => 'name', 'value'=>$sac_name))."</label></p>
@@ -45,14 +44,7 @@ $form_body .= "
 
 <p>
 	<label>" . elgg_echo('shared_access:members') . "</label>
-	<div class='clearfloat'>$member_html</div>
-</p>
-
-
-<p>
-	<label>" . elgg_echo("shared_access:invite_users") . "<br /></label>". 
-		elgg_view('input/userpicker', array('internalname'=>'members'))
-	. "
+	$userpicker
 </p>
 
 ";
