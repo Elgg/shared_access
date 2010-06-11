@@ -13,7 +13,7 @@
 <ul class="submenu shared_access">
 <?php
 	if(isloggedin()){
-		echo "<li><a href=\"{$vars['url']}mod/conversations/everyone.php\">" . elgg_echo('conversations:all') . "</a></li>";
+		echo "<li><a href=\"{$vars['url']}mod/conversations/all.php\">" . elgg_echo('conversations:all') . "</a></li>";
 		echo "<li><a href=\"{$vars['url']}pg/conversations/" . $_SESSION['user']->username . "\">". elgg_echo('conversations:read') ."</a></li>";
 	}
 ?>
