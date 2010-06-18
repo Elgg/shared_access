@@ -21,7 +21,7 @@ if ($sac) {
 }
 
 $user = get_loggedin_user();
-$limit = 5;
+$limit = 100;
 
 $collections = elgg_get_entities_from_relationship(array('relationship' => 'shared_access_member', 'relationship_guid' => $user->getGUID(), 'inverse_relationship' => FALSE, 'limit' => $limit));
 
