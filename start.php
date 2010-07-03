@@ -23,8 +23,8 @@ function shared_access_init() {
 	// extend topbar
 	elgg_extend_view('elgg_topbar/extend', 'shared_access/topbar_extend');
 
-	// show up in Conversations and Activity sidebars
-	elgg_extend_view('conversations/sidebar', 'shared_access/sidebar/thewire_ext');
+	// show up in thewire and Activity sidebars
+	elgg_extend_view('thewire/sidebar', 'shared_access/sidebar/thewire_ext');
 	elgg_extend_view('riverdashboard/sidebar', 'shared_access/sidebar/riverdashboard_ext');
 
 	// page handler for invitations and managing shared access lists.
@@ -85,7 +85,7 @@ function shared_access_page_handler($page) {
 			if (!$sac = get_entity($page[1]) OR $sac->getSubtype() != 'shared_access') {
 				forward($CONFIG->site->url . 'pg/shared_access/home');
 			} else {
-				$body = elgg_view('conversations/shared_access', array('sac' => $sac));
+				$body = elgg_view('thewire/shared_access', array('sac' => $sac));
 			}
 
 			page_draw(elgg_echo('thewire:thewire'),$body);
